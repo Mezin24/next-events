@@ -1,5 +1,8 @@
 import Link from 'next/link';
-
+import Button from '../ui/button';
+import TimeIcon from '../icons/time-icon';
+import Location from '../icons/location-icon';
+import ArrowRight from '../icons/arrow-right-icon';
 import classes from './event-item.module.css';
 
 const EventItem = ({ title, image, date, location, id }) => {
@@ -18,23 +21,21 @@ const EventItem = ({ title, image, date, location, id }) => {
         <div>
           <h2>{title}</h2>
           <div className={classes.date}>
+            <TimeIcon />
             <time>{humanReadbleDate}</time>
           </div>
           <div className={classes.address}>
+            <Location />
             <address>{formatedLocation}</address>
           </div>
         </div>
         <div className={classes.actions}>
-          <Link
-            href={{
-              pathname: '/events/[id]',
-              query: {
-                id,
-              },
-            }}
-          >
-            Explore Event
-          </Link>
+          <Button link={`/events/${id}`}>
+            Explore Event{' '}
+            <span className={classes.icon}>
+              <ArrowRight />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
